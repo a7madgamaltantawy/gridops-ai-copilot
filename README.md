@@ -108,6 +108,76 @@ This copilot:
 
 ---
 
+## 🧭 System Architecture
+
+The GridOps AI Copilot follows a layered architecture that combines structured data processing, deterministic reasoning, and AI-driven explanation.
+
+---
+
+### 🔹 Architecture Overview
+
+The system is designed in 5 logical layers:
+
+1. **Data Layer**
+   - Stores telemetry, events, incidents, and documents
+   - Implemented using SQLite
+
+2. **Retrieval Layer**
+   - Fetches relevant data based on incident time and feeder
+   - Includes:
+     - telemetry window extraction
+     - event timeline reconstruction
+     - similar incident retrieval
+     - document lookup
+
+3. **Reasoning Layer**
+   - Converts raw data into structured findings
+   - Detects:
+     - overload patterns
+     - voltage drops
+     - protection events
+     - historical patterns
+
+4. **RAG Layer (Retrieval-Augmented Generation)**
+   - Combines all findings into a grounded context
+   - Prepares structured prompt for AI model
+
+5. **Copilot Layer (UI + AI)**
+   - Accepts free-text user questions
+   - Detects intent (why / evidence / actions / history)
+   - Generates structured + AI-assisted answers
+
+---
+
+### 🔄 End-to-End Data Flow
+
+```mermaid
+flowchart TD
+    A[User Question (Streamlit UI)] --> B[Intent Detection]
+    B --> C[Retrieval Layer]
+
+    C --> C1[Telemetry Data]
+    C --> C2[Event Logs]
+    C --> C3[Incident History]
+    C --> C4[Documents]
+
+    C1 --> D[Reasoning Layer]
+    C2 --> D
+    C3 --> D
+    C4 --> D
+
+    D --> E[Structured Findings]
+
+    E --> F[RAG Context Builder]
+    F --> G[LLM Prompt]
+
+    G --> H[LLM / Fallback Answer]
+    H --> I[UI Display]
+
+    J[(SQLite Database)] --> C
+
+
+
 ## 🔮 Future Improvements
 
 - vector DB (FAISS / Chroma)  
