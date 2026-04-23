@@ -4,7 +4,7 @@ AI-powered copilot for grid / SCADA / EMS operations that explains outages using
 
 ---
 
-## 🚀 What this project does
+##  What this project does
 
 GridOps AI Copilot answers real operational questions like:
 
@@ -14,7 +14,7 @@ GridOps AI Copilot answers real operational questions like:
 
 ## 🧠 Key Features
 
-- Incident explanation from telemetry + events  
+- Incident explanation from telemetry and events  
 - Evidence-based reasoning (no hallucination)  
 - Incident history retrieval  
 - Procedure-aware (RAG)  
@@ -23,7 +23,7 @@ GridOps AI Copilot answers real operational questions like:
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 1. Data Layer → SQLite (telemetry, events, incidents, documents)  
 2. Retrieval Layer → fetch relevant data  
@@ -44,7 +44,7 @@ GridOps AI Copilot answers real operational questions like:
 
 ---
 
-## 📊 Example Scenario
+##  Example Scenario
 
 Feeder F-12 outage:
 - rising current → overload  
@@ -54,7 +54,7 @@ Feeder F-12 outage:
 
 ---
 
-## 🖥️ Run the project
+##  Run the project
 
 ### 1. Install dependencies
 
@@ -94,7 +94,7 @@ Feeder F-12 outage:
 
 ---
 
-## 💡 Why this project matters
+##  Why this project matters
 
 Traditional EMS tools:
 - what happened  
@@ -108,74 +108,32 @@ This copilot:
 
 ---
 
-## 🧭 System Architecture
+##  System Architecture
 
-The GridOps AI Copilot follows a layered architecture that combines structured data processing, deterministic reasoning, and AI-driven explanation.
-
----
-
-### 🔹 Architecture Overview
-
-The system is designed in 5 logical layers:
-
-1. **Data Layer**
-   - Stores telemetry, events, incidents, and documents
-   - Implemented using SQLite
-
-2. **Retrieval Layer**
-   - Fetches relevant data based on incident time and feeder
-   - Includes:
-     - telemetry window extraction
-     - event timeline reconstruction
-     - similar incident retrieval
-     - document lookup
-
-3. **Reasoning Layer**
-   - Converts raw data into structured findings
-   - Detects:
-     - overload patterns
-     - voltage drops
-     - protection events
-     - historical patterns
-
-4. **RAG Layer (Retrieval-Augmented Generation)**
-   - Combines all findings into a grounded context
-   - Prepares structured prompt for AI model
-
-5. **Copilot Layer (UI + AI)**
-   - Accepts free-text user questions
-   - Detects intent (why / evidence / actions / history)
-   - Generates structured + AI-assisted answers
+The system follows a layered architecture combining data retrieval, reasoning, and AI.
 
 ---
 
-### 🔄 End-to-End Data Flow
+###  Data Flow Diagram
 
 ```mermaid
 flowchart TD
     A[User Question] --> B[Intent Detection]
     B --> C[Retrieval Layer]
 
-    C --> C1[Telemetry Data]
-    C --> C2[Event Logs]
-    C --> C3[Incident History]
-    C --> C4[Documents]
+    C --> D[Telemetry]
+    C --> E[Events]
+    C --> F[Incidents]
+    C --> G[Documents]
 
-    C1 --> D[Reasoning Layer]
-    C2 --> D
-    C3 --> D
-    C4 --> D
+    D --> H[Reasoning]
+    E --> H
+    F --> H
+    G --> H
 
-    D --> E[Structured Findings]
+    H --> I[Findings]
+    I --> J[RAG Context]
+    J --> K[LLM Answer]
+    K --> L[UI Output]
 
-    E --> F[RAG Context Builder]
-    F --> G[LLM Prompt]
-
-    G --> H[LLM or Fallback Answer]
-    H --> I[UI Display]
-
-    J[(SQLite Database)] --> C
-
-
-    ### Author
-    Ahmed Tantawy
+    DB[(SQLite)] --> C
