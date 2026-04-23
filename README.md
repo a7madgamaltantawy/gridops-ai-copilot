@@ -176,16 +176,6 @@ flowchart TD
 
     J[(SQLite Database)] --> C
 
-## 🔮 Future Improvements
 
-- vector DB (FAISS / Chroma)  
-- real SCADA integration  
-- anomaly detection  
-- cloud deployment  
-
----
-
-## 👨‍💻 Author
-
-Ahmed Tantawy  
-Data Engineer | Avionics | SCADA Systems
+    ### Author
+    Ahmed Tantawy
