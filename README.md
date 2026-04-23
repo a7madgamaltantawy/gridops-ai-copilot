@@ -153,7 +153,7 @@ The system is designed in 5 logical layers:
 
 ```mermaid
 flowchart TD
-    A[User Question (Streamlit UI)] --> B[Intent Detection]
+    A[User Question] --> B[Intent Detection]
     B --> C[Retrieval Layer]
 
     C --> C1[Telemetry Data]
@@ -171,12 +171,10 @@ flowchart TD
     E --> F[RAG Context Builder]
     F --> G[LLM Prompt]
 
-    G --> H[LLM / Fallback Answer]
+    G --> H[LLM or Fallback Answer]
     H --> I[UI Display]
 
     J[(SQLite Database)] --> C
-
-
 
 ## 🔮 Future Improvements
 
