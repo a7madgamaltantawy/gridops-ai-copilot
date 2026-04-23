@@ -12,7 +12,7 @@ GridOps AI Copilot answers real operational questions like:
 
 ---
 
-## 🧠 Key Features
+##  Key Features
 
 - Incident explanation from telemetry and events  
 - Evidence-based reasoning (no hallucination)  
@@ -33,7 +33,7 @@ GridOps AI Copilot answers real operational questions like:
 
 ---
 
-## 🔁 End-to-End Flow
+##  End-to-End Flow
 
 1. User asks a question  
 2. System detects intent  
